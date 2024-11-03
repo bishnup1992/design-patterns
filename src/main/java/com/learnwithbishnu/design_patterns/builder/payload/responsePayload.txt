@@ -1,0 +1,30 @@
+{
+    "orderId": "08057c11-d3de-4c55-803f-9b6d7c408a6d",
+    "customerDetails": "John Doe, johndoe@example.com",
+    "shippingAddress": "123 Main St, Springfield, USA",
+    "billingAddress": "456 Elm St, Springfield, USA",
+    "orderItems": [
+        {
+            "itemName": "Laptop",
+            "price": 1000.0,
+            "count": 1,
+            "discount": 100.0,
+            "discountedPrice": 900.0
+        },
+        {
+            "itemName": "Monitor",
+            "price": 200.0,
+            "count": 5,
+            "discount": 500.0,
+            "discountedPrice": 500.0
+        },
+        {
+            "itemName": "Keyboard",
+            "price": 50.0,
+            "count": 2,
+            "discount": 10.0,
+            "discountedPrice": 90.0
+        }
+    ],
+    "totalAmount": 1490.0
+}

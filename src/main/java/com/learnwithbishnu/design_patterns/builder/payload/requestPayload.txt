@@ -1,0 +1,22 @@
+{
+  "customerDetails": "John Doe, johndoe@example.com",
+  "shippingAddress": "123 Main St, Springfield, USA",
+  "billingAddress": "456 Elm St, Springfield, USA",
+  "orderItems": [
+    {
+      "itemName": "Laptop",
+      "price": 1000.0,
+      "count": 1
+    },
+    {
+      "itemName": "Monitor",
+      "price": 200.0,
+      "count": 5
+    },
+    {
+      "itemName": "Keyboard",
+      "price": 50.0,
+      "count": 2
+    }
+  ]
+}
