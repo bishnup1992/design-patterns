@@ -1,0 +1,9 @@
+Key Benefits of Using the Builder Pattern in This Example
+Immutability ensures that the order state doesn't change unexpectedly.
+Centralized Complexity: The builder handles all the different configurations (BULK, EXPRESS, etc.) within itself, making the construction process standardized. This keeps the service layer code simple and focused on orchestration rather than construction details.
+
+Consistency and Validation: Each Order object is created in a consistent state with validated fields (e.g., an order must have items, the total amount must be non-negative). This reduces the chance of errors from partial or invalid object states.
+
+Modular Configuration: If the business adds a new order type, you can update the builder with a new condition rather than altering multiple classes. This modularity makes it easier to evolve the system over time.
+
+Immutability for Concurrency: Once the Order object is built, it is immutable. This can be crucial in concurrent systems where multiple threads might handle the same order.
