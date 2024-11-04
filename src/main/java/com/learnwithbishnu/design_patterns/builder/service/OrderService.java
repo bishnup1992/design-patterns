@@ -2,6 +2,7 @@ package com.learnwithbishnu.design_patterns.builder.service;
 
 import com.learnwithbishnu.design_patterns.builder.model.Order;
 import com.learnwithbishnu.design_patterns.builder.model.OrderItem;
+import com.learnwithbishnu.design_patterns.builder.model.OrderRequest;
 import com.learnwithbishnu.design_patterns.builder.model.OrderResponse;
 import org.springframework.stereotype.Service;
 
