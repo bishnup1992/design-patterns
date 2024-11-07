@@ -1,0 +1,11 @@
+Factory method is a creational design pattern.
+it provides an interface for creating objects but allows implementing classes to exact objects type that will be created.
+This pattern is used when a system needs to work with multiple types of objects.
+Key Concepts of the Factory Pattern are:
+1. Centralized Object Creation: The Factory class handles object instantiation,
+    so client code only needs to interact with a common interface and doesn’t worry about specific implementations.
+2. Encapsulation: Object creation logic is encapsulated within the Factory, making it easier to change or extend
+    the instantiation process without modifying client code.
+3. Decoupling: Clients interact with interfaces or abstract classes rather than specific implementations,
+    which makes the system more flexible and scalable.
+
