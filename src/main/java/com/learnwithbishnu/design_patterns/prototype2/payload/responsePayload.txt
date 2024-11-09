@@ -1,0 +1,14 @@
+{
+    "department": "Engineering",
+    "role": "Developer",
+    "name": "Bishnu",
+    "permissions": [
+        "Access_source_code",
+        "Access_documentation",
+        "Access_dev_environment"
+    ],
+    "benefits": [
+        "Remote_work",
+        "Health_insurance"
+    ]
+}

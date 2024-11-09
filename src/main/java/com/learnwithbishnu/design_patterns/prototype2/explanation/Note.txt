@@ -1,0 +1,21 @@
+Creating User Profiles in a Customer Relationship Management System
+
+Imagine a CRM system for a large company that manages customer profiles for different regions, tiers, and product preferences.
+These customer profiles are rich objects containing various attributes, such as
+Account information
+Permission levels
+Default preferences
+Notification settings
+Analytics configurations
+
+And Each of these settings might depend on different sources, including
+API calls to fetch regional configurations or available features
+Database queries to fetch user-specific settings
+Local configuration files to fetch default settings
+Rule-based engines to determine preferences and permissions.
+Caching mechanisms to optimize loading frequently used configurations
+
+So if create objects with new Operator then it will be time consuming
+
+So we can use Prototype Design Pattern to clone the object and modify the required fields
+

@@ -1,0 +1,3 @@
+POST Call
+
+http://localhost:8080/api/employee/create?name=Bishnu&profileType=Developer
