@@ -1,0 +1,6 @@
+{
+    "provider": "FedEx",
+    "cost": 30.0,
+    "estimatedDelivery": "3-5 Business days",
+    "trackingCode": "FEDX1234"
+}

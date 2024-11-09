@@ -1,0 +1,8 @@
+Factory Pattern
+allows us to choose the correct shipping provider dynamically based on the priority
+and making it scalable if additional providers are added
+
+Builder Pattern
+allows us to create a complex object step by step
+and produce different types and representations of an object using the same construction code
+

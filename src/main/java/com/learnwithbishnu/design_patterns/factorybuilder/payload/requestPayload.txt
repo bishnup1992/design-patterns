@@ -1,0 +1,11 @@
+POST Call
+
+http://localhost:8080/api/shipping/create
+
+{
+    "destination": "123 Main St, Springfield, USA",
+    "weight": 5.0,
+    "packageType": "box",
+    "insurance": true,
+    "priority": "express" //    "standard or overnight"
+}
