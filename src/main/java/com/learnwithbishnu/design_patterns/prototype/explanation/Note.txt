@@ -1,0 +1,20 @@
+Prototype Design Pattern
+=========================
+1. Prototype design pattern is a creational design pattern.
+2.it allows you to create new objects by copying (cloning) existing ones without compromising their internals.
+3.his pattern is particularly useful when the cost of creating a new instance is expensive or complex
+4.It enables cloning an object without depending on its exact class.
+
+Use Cases
+=========
+1.Costly Object Creation
+2 Complex Objects
+3.Frequent Duplicates with Small Variations:
+    When you need many copies of a similar object with minor variations,
+    such as generating multiple reports with only slight changes in content.
+Benefits
+========
+1. Performance: Cloning is often faster than instantiating a new object.
+2. Flexibility: You can add or remove objects at runtime.
+3. Simplified object creation: You can create complex objects more easily.
+

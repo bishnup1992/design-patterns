@@ -1,0 +1,5 @@
+{
+    "clientName": "Client",
+    "invoiceNumber": "123",
+    "amount": 100.0
+}
