@@ -19,3 +19,16 @@ So if create objects with new Operator then it will be time consuming
 
 So we can use Prototype Design Pattern to clone the object and modify the required fields
 
+Shallow Clone
+A shallow clone of an object copies the object itself,
+but not the objects that it references.
+In other words, the fields of the cloned object that are
+references to other objects will still point to the same objects
+as the original. This can lead to unintended side effects if
+the referenced objects are mutable.
+
+Deep Clone
+A deep clone, on the other hand, copies the object and all the
+objects it references, recursively. This means that the cloned
+object and the original object are completely independent of each
+other, and changes to one will not affect the other.
