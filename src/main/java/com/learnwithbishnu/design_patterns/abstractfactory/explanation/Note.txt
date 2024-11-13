@@ -1,0 +1,5 @@
+Abstract Design Pattern Usage:
+1.You need to create a family of related objects that vary based on a specific type
+2.You want to encapsulate the logic of which family to use, keeping it consistent and manageable
+3.You want to provide a way to create objects without specifying their concrete classes
+4.You want to create a family of objects that are designed to be used together

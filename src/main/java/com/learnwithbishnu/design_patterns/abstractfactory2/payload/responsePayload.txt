@@ -1,0 +1,7 @@
+{
+    "message": "Resource created successfully",
+    "instanceId": "com.learnwithbishnu.design_patterns.abstractfactory2.service.impl.AzureVMInstance@6a3e15b7",
+    "instanceType": "micro",
+    "storageId": "AzureBlob",
+    "storageCapacity": "1024 MiB"
+}

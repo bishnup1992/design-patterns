@@ -1,0 +1,8 @@
+POST Call
+Endpoint: http://localhost:8080/api/resource/create
+
+{
+    "provider": "azure",
+    "instanceType": "micro",
+    "storageCapacity": 1024
+}

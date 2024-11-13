@@ -1,0 +1,3 @@
+GET Call
+
+http://localhost:8080/api/document/generate?documentType=excel
