@@ -1,0 +1,62 @@
+import streamlit as st
+import requests
+
+# --- Page Config ---
+st.set_page_config(page_title="Agile Coach", layout="centered")
+st.title("🤖 Agile Coach Agent (via REST API)")
+
+# Sidebar: Auth Config
+st.sidebar.header("🔐 API Configuration")
+auth_token = st.sidebar.text_input("Auth Token", type="password")
+deployment_id = st.sidebar.text_input("Deployment ID", value="dd7ttfb-xxx")
+conversation_id = st.sidebar.text_input("Conversation ID", value="e33a8c0f-xxx")
+file_ids = st.sidebar.text_input("File IDs (comma separated)", value="e33a8c0f-xxx")
+api_base_url = st.sidebar.text_input("API Base URL", value="https://api.openai.com/v1/chat/completions")
+
+# Initialize session_state memory
+if "chat_history" not in st.session_state:
+    st.session_state.chat_history = []
+
+# User Input
+st.subheader("💬 Ask Agile Question")
+user_input = st.text_input("Your message:", key="user_input")
+submit = st.button("Send")
+
+# Handle Submission
+if submit and user_input:
+    if not auth_token:
+        st.error("Please enter an Auth Token.")
+    else:
+        api_url = f"{api_base_url}={deployment_id}"
+        headers = {
+            "Authorization": f"Bearer {auth_token}",
+            "Content-Type": "application/json"
+        }
+        payload = {
+            "ConversationId": conversation_id,
+            "Message": user_input,
+            "InputMode": "standard",
+            "FileIds": [fid.strip() for fid in file_ids.split(",") if fid.strip()]
+        }
+
+        try:
+            with st.spinner("🧠 Thinking..."):
+                response = requests.post(api_url, headers=headers, json=payload)
+                response.raise_for_status()
+                reply = response.json().get("Message", "No response from server.")
+
+                # Save to chat history
+                st.session_state.chat_history.append({"role": "user", "content": user_input})
+                st.session_state.chat_history.append({"role": "assistant", "content": reply})
+                st.session_state.user_input = ""  # clear input
+
+        except Exception as e:
+            st.error(f"Error: {e}")
+
+# Display history
+st.subheader("📜 Chat History")
+for msg in st.session_state.chat_history:
+    if msg["role"] == "user":
+        st.markdown(f"🧑 **You:** {msg['content']}")
+    else:
+        st.markdown(f"🤖 **Agile Coach:** {msg['content']}")
