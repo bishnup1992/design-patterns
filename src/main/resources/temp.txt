@@ -1,59 +1,86 @@
 import streamlit as st
 import requests
 
-# --- Page Config ---
-st.set_page_config(page_title="Agile Coach", layout="centered")
-st.title("🤖 Agile Coach Agent (via REST API)")
+# --------------------------
+# PAGE CONFIG & TITLE
+# --------------------------
+st.set_page_config(page_title="Agile Coach Chat", layout="centered")
+st.title("🤖 Agile Coach Chat")
 
-# Sidebar: Auth Config
+# --------------------------
+# SIDEBAR CONFIG
+# --------------------------
 st.sidebar.header("🔐 API Configuration")
 auth_token = st.sidebar.text_input("Auth Token", type="password")
-deployment_id = st.sidebar.text_input("Deployment ID", value="dd7ttfb-xxx")
-conversation_id = st.sidebar.text_input("Conversation ID", value="e33a8c0f-xxx")
-file_ids = st.sidebar.text_input("File IDs (comma separated)", value="e33a8c0f-xxx")
+deployment_id = st.sidebar.text_input("Deployment ID", value="your-deployment-id")
+conversation_id = st.sidebar.text_input("Conversation ID", value="your-conversation-id")
+file_ids_input = st.sidebar.text_input("File IDs (comma separated)", value="file-id-1")
 api_base_url = st.sidebar.text_input("API Base URL", value="https://api.openai.com/v1/chat/completions")
 
-# Initialize session_state memory
+# --------------------------
+# SYSTEM PROMPT TEMPLATE
+# --------------------------
+SYSTEM_PROMPT = (
+    "You are an Agile Coach. Answer all questions related to Agile methodology "
+    "clearly and concisely using real-world examples if possible."
+)
+
+# --------------------------
+# CHAT HISTORY INIT
+# --------------------------
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
-# User Input
-st.subheader("💬 Ask Agile Question")
-user_input = st.text_input("Your message:", key="user_input")
+# --------------------------
+# USER INPUT
+# --------------------------
+st.subheader("💬 Ask a question about Agile")
+user_input = st.text_input("Enter your question", key="user_input")
 submit = st.button("Send")
 
-# Handle Submission
+# --------------------------
+# API CALL ON SUBMIT
+# --------------------------
 if submit and user_input:
     if not auth_token:
-        st.error("Please enter an Auth Token.")
+        st.error("Please enter a valid Auth Token.")
     else:
-        api_url = f"{api_base_url}={deployment_id}"
+        full_message = f"{SYSTEM_PROMPT}\n\nUser: {user_input}"
+        file_ids = [fid.strip() for fid in file_ids_input.split(",") if fid.strip()]
+        invoke_url = f"{api_base_url}={deployment_id}"
+
         headers = {
             "Authorization": f"Bearer {auth_token}",
             "Content-Type": "application/json"
         }
+
         payload = {
             "ConversationId": conversation_id,
-            "Message": user_input,
+            "Message": full_message,
             "InputMode": "standard",
-            "FileIds": [fid.strip() for fid in file_ids.split(",") if fid.strip()]
+            "FileIds": file_ids
         }
 
         try:
-            with st.spinner("🧠 Thinking..."):
-                response = requests.post(api_url, headers=headers, json=payload)
+            with st.spinner("Thinking..."):
+                response = requests.post(invoke_url, headers=headers, json=payload)
                 response.raise_for_status()
-                reply = response.json().get("Message", "No response from server.")
+                data = response.json()
+                reply = data.get("Message", "No message found in response.")
 
-                # Save to chat history
+                # Add to history
                 st.session_state.chat_history.append({"role": "user", "content": user_input})
                 st.session_state.chat_history.append({"role": "assistant", "content": reply})
-                st.session_state.user_input = ""  # clear input
 
-        except Exception as e:
-            st.error(f"Error: {e}")
+                # Clear input
+                st.session_state.user_input = ""
 
-# Display history
+        except requests.exceptions.RequestException as e:
+            st.error(f"❌ Error communicating with the API: {str(e)}")
+
+# --------------------------
+# CHAT DISPLAY
+# --------------------------
 st.subheader("📜 Chat History")
 for msg in st.session_state.chat_history:
     if msg["role"] == "user":
